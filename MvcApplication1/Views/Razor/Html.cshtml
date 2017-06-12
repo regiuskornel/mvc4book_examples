@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Html";
+}
+
+<h2>Html helperek</h2>
+
+@Html.ActionLink("Ugrás a szintaxis oldalra", "Szintaxis", null, new { id = "ugras1", @class = "kiemelt" })
+
+@Html.ActionLink("A szintaxis oldalra 2", "Szintaxis", null, new RouteValueDictionary() { { "id", "ugras1" }, { "class", "kiemelt" }, { "data-html5", "Minden egyszerű" } }
+ )

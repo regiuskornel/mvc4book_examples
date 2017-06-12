@@ -1,0 +1,33 @@
+﻿@model FirstMVCApp.Models.PhoneNumber
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>PhoneNumber</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Number)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Number)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CardRegister.FullName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CardRegister.FullName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Vissza a névjegykártyához", "Details","CardRegister",new {id = Model.CardRegisterId}, null)
+    </p>
+}

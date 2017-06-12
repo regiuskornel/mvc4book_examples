@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "FixValueProvider";
+}
+
+<h2>FixValueProvider demó</h2>
+
+@using (Html.BeginForm("FixValueProvider", "BinderDemo", new { Id = "99999", EzNemValid = "Ez query string lesz" }, FormMethod.Post))
+{
+    <span>Id:</span> <input name="Id" value="1" readonly="readonly" /> <br />
+    <span>WillNeverValid:</span> <input name="WillNeverValid" value="de nem ám" readonly="readonly"/>
+
+    <input name="prefix.WillNeverValid" value="prefixes" type="hidden"/>
+
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+}

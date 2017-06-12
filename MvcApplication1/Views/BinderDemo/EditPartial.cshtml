@@ -1,0 +1,29 @@
+﻿@model MvcApplication1.Models.CategoryModel
+<fieldset>
+    <legend>CategoryModel</legend>
+
+    <div>
+        @Html.LabelFor(model => model.Id) : @Model.Id
+        @Html.HiddenFor(model => model.Id)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.FullName)
+        <span class="editor-field">
+            @Html.EditorFor(model => model.FullName)
+            @Html.ValidationMessageFor(model => model.FullName)
+        </span>
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CreatedDate)
+        <span class="editor-field">
+            @Html.EditorFor(model => model.CreatedDate)
+            @Html.ValidationMessageFor(model => model.CreatedDate)
+        </span>
+    </div>
+
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+</fieldset>

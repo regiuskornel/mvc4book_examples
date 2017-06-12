@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MvcApplication1.Models.TemplateDemoProductModel>
+@{ int i = 0; }
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.EditorFor(m => item, "TemplateDemoProductModel", "PurchasesList[" + i++ + "]")
+    }
+</table>

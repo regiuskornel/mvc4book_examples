@@ -1,0 +1,132 @@
+﻿@model MvcApplication1.Models.TemplateDemoModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>TemplateDemoModel</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullName)
+            @Html.ValidationMessageFor(model => model.FullName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TotalSum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TotalSum, "NemLétezoTemplate")
+            @Html.ValidationMessageFor(model => model.TotalSum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastPurchaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastPurchaseDate)
+            @Html.ValidationMessageFor(model => model.LastPurchaseDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VIP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VIP)
+            @Html.ValidationMessageFor(model => model.VIP)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Duration)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Duration)
+            @Html.ValidationMessageFor(model => model.Duration)
+        </div>
+        
+
+        <hr />
+        <div class="editor-fileld">
+            <table>
+                @Html.DisplayFor(m=>m.PurchasesList,"TemplateDemoProductModelHeader")
+                @Html.EditorFor(m=>m.PurchasesList)
+            </table>
+        </div>
+
+        @*  <!-- Alternatív megoldás -->
+        <div class="editor-fileld">
+            <table>
+                @Html.DisplayFor(m => m.PurchasesList, "TemplateDemoProductModelHeader")
+                @for (int i = 0; i < Model.PurchasesList.Count; i++)
+                {
+                    @Html.EditorFor(m => m.PurchasesList[i])
+                }
+            </table>
+        </div> *@
+
+        <!-- Alternatív megoldás 2.-->
+        @*<div class="editor-fileld">
+            <table>
+                @Html.DisplayFor(m => m.PurchasesList, "TemplateDemoProductModelHeader")
+                @for (int i = 0; i < Model.PurchasesList.Count; i++)
+                {
+                    @Html.EditorFor(m => m.PurchasesList[i], "TemplateDemoProductModel", "PurchasesList[" + i + "]")
+                }
+            </table>
+        </div>*@
+
+        <!-- foreach megoldás 3.-->
+@*        <div class="editor-fileld">
+            <table>
+                @Html.DisplayFor(m => m.PurchasesList, "TemplateDemoProductModelHeader")
+                @{ int i = 0; }
+                @foreach (var item in Model.PurchasesList)
+                {
+                    @Html.EditorFor(m => item, "TemplateDemoProductModel", "PurchasesList[" + i++ + "]")
+                }
+            </table>
+        </div>*@
+
+        @{ Html.RenderPartial("TemplateGrid", Model.PurchasesList); }
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

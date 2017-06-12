@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mobil teszt - Mobil eszköz variáns.</h2>
+@Html.Partial("IndexPartial")
+@*<br />Nem szükséges így hivatkozni:<br />
+@Html.Partial("IndexPartial.Mobile")*@
+
+
+Overridden User Agent: @this.ViewContext.HttpContext.GetOverriddenUserAgent() <br />
+Átkapcsolás: 
+@{
+    bool ismobile = ViewContext.HttpContext.GetOverriddenBrowser().IsMobileDevice;
+    @Html.ActionLink(ismobile ? "Desktop nézetre" : "Mobil nézetre", "ChangeBrowserMode", "MobileTest",
+       new { mobile = !ismobile, returnUrl = Request.Url.PathAndQuery },
+       new { target = "_self" })
+
+    HttpBrowserCapabilitiesBase orverRiddenBrowser = ViewContext.HttpContext.GetOverriddenBrowser();
+        
+}
+<hr/>
+
+<table>
+    <tr>
+        <th>Tulajdonság</th>
+        <th>Request alapján</th>
+        <th>HttpContext alapján</th>
+    </tr>
+    <tr>
+        <td>Browser</td>
+        <td>@Request.Browser.Browser</td>
+        <td>@orverRiddenBrowser.Browser</td>
+    </tr>
+    <tr>
+        <td>IsMobileDevice</td>
+        <td>@Request.Browser.IsMobileDevice</td>
+        <td>@orverRiddenBrowser.IsMobileDevice</td>
+    </tr>
+    <tr>
+        <td>Cookies</td>
+        <td>@Request.Browser.Cookies</td>
+        <td>@orverRiddenBrowser.Cookies</td>
+    </tr>
+    @* Ezeket nem érdemes használni.
+        <tr>
+        <td>MobileDeviceManufacturer</td><td>@Request.Browser.MobileDeviceManufacturer</td>
+    </tr>    
+    <tr>
+        <td>MobileDeviceModel</td><td>@Request.Browser.MobileDeviceModel</td>
+    </tr>    
+    <tr>
+        <td>ScreenPixelsWidth</td><td>@Request.Browser.ScreenPixelsWidth</td>
+    </tr>    
+    <tr>
+        <td>ScreenPixelsHeight</td><td>@Request.Browser.ScreenPixelsHeight</td>
+    </tr>    
+    <tr>
+        <td>IsColor</td><td>@Request.Browser.IsColor</td>
+    </tr>    
+    <tr>
+        <td>ScreenBitDepth</td><td>@Request.Browser.ScreenBitDepth</td>
+    </tr>    *@
+</table>

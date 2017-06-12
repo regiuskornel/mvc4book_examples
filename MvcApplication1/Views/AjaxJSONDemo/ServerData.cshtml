@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "title";
+}
+
+<h2>Szerver adatok, JSON dátum kezelés</h2>
+<br /><br />
+@Html.ActionLink("Szerver adatok nyersen", "GetServerData")
+<br /><hr />
+@Ajax.ActionLink("Szerver adatok visszaalakítva", "GetServerData", new AjaxOptions()
+    {
+        OnSuccess = "ParseJson",
+        UpdateTargetId = string.Empty
+    }
+)
+
+@Ajax.ActionLink("Szerver adatok visszaalakítva saját DateTime konverterrel", "GetServerData2", new AjaxOptions()
+    {
+        OnSuccess = "ParseJson2",
+        UpdateTargetId = string.Empty
+    }
+)
+<br /><br />
+<table>
+    <colgroup>
+        <col style="width:150px"/>
+        <col style="width:200px"/>
+        <col style="width:200px"/>
+    </colgroup>
+    <tr>
+        <th> Adat név </th><th> Normál JSON </th><th> Parsolt JSON </th>
+    </tr>
+    <tr>
+        <td> Szöveg </td><td id="szoveg">...</td><td id="szovegph">...</td>
+    </tr>
+    <tr>
+        <td> Szerver idő </td><td id="szerverido">...</td><td id="szerveridoph">...</td>
+    </tr>
+    <tr>
+        <td> Eniac elkészült </td><td id="eniacfinish">...</td><td id="eniacfinishph">...</td>
+    </tr>
+</table>
+<hr/>
+
+<a onclick="SendJsonData()">JSON objektum küldése a szervernek</a>
+<br />
+<table>
+    <colgroup>
+        <col style="width:150px"/>
+        <col style="width:200px"/>
+        <col style="width:200px"/>
+    </colgroup>
+    <tr>
+        <th></th><th> küldés előtt</th><th> válasz </th></tr>
+    <tr>
+        <th>Id</th> <td id="sendId"></td> <td id="recId"></td>
+    </tr>
+    <tr>
+        <th>Idő</th> <td id="sendIdo"></td> <td id="recIdo"></td>
+    </tr>
+</table>
+<br /><br />
+
+
+<script type="text/javascript">
+    function ParseJson(json, status, ajaxXHR ) {
+        $('#szoveg').html(json.Message);
+        $('#szerverido').html(json.CurrentTime);
+        $('#eniacfinish').html(json.EniacFinished);
+
+        var parsed = $.parseJSON(ajaxXHR.responseText);
+        
+        $('#szovegph').html(parsed.Message);
+        $('#szerveridoph').html(ParseDate(parsed.CurrentTime));
+        $('#eniacfinishph').html(ParseDate(parsed.EniacFinished));
+    }
+    
+    function ParseDate(value) {
+        var pdate = new Date(parseInt(value.substr(6)));
+        return pdate.toLocaleString();
+    }
+    
+    function ParseJson2(json, status, ajaxXHR) {
+        $('#szovegph').html(json.Message);
+        $('#szerveridoph').html(json.CurrentTime.dateTime);
+        $('#eniacfinishph').html(json.EniacFinished.date + '<br />' + json.EniacFinished.long);
+    }
+
+
+    function SendJsonData() {
+        var MyJsonModell = {
+            Id: 1,
+            Message: 'Küldött',
+            ClientUTCTime: new Date().toUTCString(),
+            Internal: {
+                Id: 1001,
+                Message: 'Küldött internal',
+                ClientUTCTime: new Date().toUTCString(),
+                }
+        };
+        
+        $('#sendId').html(MyJsonModell.Id);
+        $('#sendIdo').html(MyJsonModell.ClientUTCTime);
+
+        $.ajax({
+            url: '@Url.Action("SetServerData")',
+            data: JSON.stringify(MyJsonModell),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            type: "POST",
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+            },
+            success: function (json, status, ajaxXHR) {
+                $('#recId').html(json.Id);
+                $('#recIdo').html(json.ClientUTCTime.dateTime);
+                }
+            }
+        );
+    }
+    
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+}

@@ -1,0 +1,36 @@
+﻿@{
+   //Már megadtam az Action View() metódusában Layout = "~/Views/Shared/_LayoutDemoSub.cshtml";
+}
+
+@section htmlhead
+{
+    <!-- Az Egyben.cshtml htmlhead beszúrt tartalma -->
+}
+
+@section header
+{
+    <h3>Egyben.cshtml HEADER kötelező tartalma</h3>
+}
+
+@section footer
+{
+    <h3>Egyben.cshtml FOOTER tartalma</h3>
+}
+
+@section featured
+{
+    <h3>Egyben.cshtml FEATURED tartalma</h3>
+}
+@if (this.IsSectionDefined("featured"))
+{
+    <h4>Definiált</h4>
+}
+
+@*@section NincsAlayouton { }*@
+
+<h3>*** Egyben.cshtml Saját tartalma ***</h3>
+is simply dummy text of the printing and typesetting industry.
+Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+<div style="background-color: #bbb;margin: 30px;">
+@Html.Partial("EgybenPartial")
+</div>

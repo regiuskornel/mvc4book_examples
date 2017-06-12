@@ -1,0 +1,16 @@
+﻿@model System.Collections.Generic.List<MvcApplication1.Models.CategoryModel>
+
+<h2>Hierarchy</h2>
+@Html.ActionLink("Lista újragenerálása","RecreateTree")
+<br/>
+<table style="width: 100%; background-color: #ddd;">
+    <tr>
+        <th>Id</th>
+        <th>Név</th>
+        <th>Létrehozva</th>
+    </tr>
+    @foreach (var m in Model)
+    {
+        @Html.DisplayFor(item => m);
+    }
+</table>

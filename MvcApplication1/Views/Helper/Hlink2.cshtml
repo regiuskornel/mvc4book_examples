@@ -1,0 +1,10 @@
+﻿<h2>Hlink2</h2>
+@if (ViewBag.honnan !=null)
+{
+    <b>Az actionlink honnan értéke: @ViewBag.honnan</b>
+}
+<br>
+@if(@Request.UrlReferrer !=null)
+{
+    <a href="@Request.UrlReferrer">Vissza a Hlink-re</a>
+}

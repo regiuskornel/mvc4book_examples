@@ -1,0 +1,22 @@
+﻿@model MvcApplication1.Models.ValidationDemoModel
+
+<h2>Validációs helperek</h2>
+@Html.ValidationSummary()
+<br />
+@using (Html.BeginForm(null, "Helper", new { id = Model.Id }, FormMethod.Post))
+{
+    @:Szöveg: @Html.TextBoxFor(m => m.FullName)<br />@Html.ValidationMessageFor(m => m.FullName)
+    <br />
+    @:Multiline<br />@Html.TextAreaFor(m => m.Address, 4, 20, null)
+    @Html.ValidationMessageFor(m => m.Address)
+    <br />
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CustomerType)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.CustomerType)
+        @Html.DisplayFor(model => model.CustomerType)
+    </div>
+    <input type="submit" />
+}

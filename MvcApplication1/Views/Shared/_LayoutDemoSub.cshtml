@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDemo.cshtml";
+}
+@section htmlhead
+{
+    <!-- A _LayoutDemoSub htmlhead beszúrt tartalma -->
+    @RenderSection("htmlhead", required: false)
+}
+
+@section header
+{
+    <div style="background-color: #ccc; margin: 30px; border: 3px dotted #008000; padding: 5px">
+        <h4>A _LayoutDemoSub header beszúrt tartalma</h4>
+        @RenderSection("header", required: true)
+    </div>
+}
+
+@section featured
+{
+    <div style="background-color: #ccc; margin: 30px; border: 3px dotted #008000; padding: 5px">
+        <h4>A _LayoutDemoSub featured beszúrt tartalma</h4>
+        @RenderSection("featured", required: false)
+    </div>
+}
+
+@section footer
+{
+    <div style="background-color: #ccc; margin: 30px; border: 3px dotted #008000; padding: 5px">
+        <h4>A _LayoutDemoSub footer beszúrt tartalma</h4>
+        @RenderSection("footer", required: false)
+    </div>
+}
+
+<div style="background-color: #ccc; margin: 30px; border: 3px dotted #008000; padding: 5px">
+    @RenderBody()
+</div>
+

@@ -1,0 +1,15 @@
+﻿@using MvcApplication1.Areas.Admin
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Admin Area Home Index oldal</h2>
+
+Admin menü:
+<br>
+1 - @Html.ActionLink("Alap projekt Home", "Index", "Home", new { area = "" }, null)
+<br>
+2 - @Html.ActionLink("Admin area Home", "Index", "Home")
+<br>
+3 - @Html.ActionLink("Admin area Felhasználók", "Index", "UserManager", new { area = AdminAreaRegistration.Area }, null)
+<br>
+

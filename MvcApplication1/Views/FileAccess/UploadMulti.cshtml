@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "UploadMulti";
+}
+
+<h2>FájlOK feltöltése</h2>
+
+@using (Html.BeginForm("UploadMulti", "FileAccess", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <b>A feltöltendő fájlok egyesével:</b> <br/>
+    <input type="file" name="uploadedfile[0]" /><br/>
+    <input type="file" name="uploadedfile[1]" /><br/>
+    <input type="file" name="uploadedfile[2]" /><br/>
+    <hr />
+    <b>HTML 5 lehetőséggel egyszerre</b><br/>
+    <input type="file" name="uploadedfile" multiple="multiple"/><br/>
+    
+    <input type="submit" value="Feltöltés" />
+}

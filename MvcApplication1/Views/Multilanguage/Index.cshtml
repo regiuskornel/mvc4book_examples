@@ -1,0 +1,47 @@
+﻿@using System.Globalization
+@model MvcApplication1.Models.ValidationMaxModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Többnyelvű oldal</h2>
+
+<table>
+    <tr>
+        <td>Current culture</td>
+        <td>@CultureInfo.CurrentCulture.Name</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Current UI culture</td>
+        <td>@CultureInfo.CurrentUICulture.Name</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Dátum formátum</td>
+        <td>@( DateTime.Now.ToString())</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Pénznem</td>
+        <td>@( (100.5).ToString("C"))</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Tizedes jegyek</td>
+        <td>@( (100200.556).ToString(""))</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>FullName</td>
+        <td>@MvcApplication1.Resources.UILabels.FullNameLabel</td>
+        <td>@Html.DisplayFor(m => m.FullName)</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>@Html.LabelFor(m => m.Address)</td>
+        <td>@Html.DisplayFor(m => m.Address)</td>
+    </tr>
+</table>
+
+@Html.ActionLink("Újratöltés", "Index")

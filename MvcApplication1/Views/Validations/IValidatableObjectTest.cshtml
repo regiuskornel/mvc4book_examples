@@ -1,0 +1,16 @@
+﻿@model MvcApplication1.Models.ValidationMaxIVOModel
+
+<h2>IValidatableObject próba</h2>
+@Html.ValidationSummary(true)
+<br />
+@using (Html.BeginForm("IValidatableObjectTest", "Validations", new { id = Model.Id }, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.FullName) @Html.TextBoxFor(m => m.FullName) 
+    <br />@Html.ValidationMessageFor(m=>m.FullName)
+    <br />
+    @Html.LabelFor(m => m.LastPurchaseDate) @Html.TextBoxFor(m => m.LastPurchaseDate)
+    <br />
+    @Html.ValidationMessageFor(m=>m.LastPurchaseDate)
+    <br />
+    <input type="submit" />
+}

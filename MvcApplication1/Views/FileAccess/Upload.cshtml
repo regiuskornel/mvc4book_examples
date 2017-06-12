@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Fájl feltöltése</h2>
+
+@using (Html.BeginForm("Upload", "FileAccess", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <b>A feltöltendő fájl: </b> <input type="file" name="uploadedfile" />
+
+    <input type="submit" value="Feltöltés" />
+}

@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Szintaxis";
+}
+Oldalcím1: @this.ViewBag.Title<br />
+Oldalcím2: <b>@this.ViewBag.Title</b> <br />
+Oldalcím3: @this.ViewBag.Title; <br />
+Oldalcím4: @Request.Browser.Browser<span>.Nem létező property</span><br />
+
+Link: <a href="@Request.Url">Vissza ide.</a><br />
+
+Email cím: baratom@mvc.hu<br />
+
+Egy db kukac: @@<br />
+
+@{
+    //Kódblokk C# nyelven
+    Write("Közvetlenül írok a kimenetre<br />");
+    WriteLiteral("<br /><em>Közvetlenül írok a kimenetre HTML kódot is<em/><br />");
+}
+<br />
+@if (1 == 1)
+{
+    //Kódblokk feloldása
+    @:Kódblokkon belüli, egysoros, nem html szöveg
+    <p>Kódblokkon belüli, html szöveg -> nem kell feloldás</p>
+    @:Nem html szöveg kóddal (@Guid.NewGuid())
+    <br />
+    <b>Html kóddal (@Guid.NewGuid()) </b>
+    <br />
+    <text>
+    Kódblokkon belüli, több soros, nem html szöveg
+        feloldása
+        .
+        .
+    </text>
+    <br />
+    @:{ Kapcsos zárójelek között }
+}
+<br />
+Egysoros több utasításos szakasz:<br />
+@("Az aktuális URL: " + Request.Url)<br />
+@(Request.Browser.Browser).Nem létező property<br />
+
+<div class="foosztaly @ViewBag.CssOsztaly" id="div1">
+    Div1 
+</div>
+
+<div class="@ViewBag.CssOsztaly" mindegynevu="@ViewBag.CssOsztaly" id="Div2">
+    Div2
+</div>
+
+<div data-mindegy="@ViewBag.CssOsztaly" id="Div3">
+    Div3 
+</div>
+
+
+<input type="checkbox" checked="@ViewBag.isChecked" readonly="@ViewBag.isChecked" disabled="@ViewBag.isChecked" />
+@{ViewBag.isChecked = true;}
+<input type="checkbox" checked="@ViewBag.isChecked" readonly="@ViewBag.isChecked" disabled="@ViewBag.isChecked" />
+
+@*Kommentezett sorok
+...*@
+
+<script type="text/javascript">
+    var kod1 = 'abc'; //abc -> kod1-be
+    var kod2 = 'abc'; @*abc -> kod1-be*@
+</script>
+
+@*Genrált html vége:
+<div class="foosztaly" id="div1"> Div1 </div>
+<div id="Div2"> Div2 </div>
+
+<script type="text/javascript">
+    var kod1 = 'abc'; //abc -> kod1-be
+    var kod2 = 'abc';
+</script>*@

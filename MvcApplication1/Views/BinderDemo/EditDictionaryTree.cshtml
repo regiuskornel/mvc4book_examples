@@ -1,0 +1,16 @@
+﻿@model MvcApplication1.Models.CategoryDictionaryModel
+
+@using (Html.BeginForm())
+{
+    <table style="width: 100%; background-color: #ddd;">
+        <tr>
+            <th>Id</th>
+            <th>Név</th>
+            <th>Létrehozva</th>
+        </tr>
+        @Html.EditorForModel()
+    </table>
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+}

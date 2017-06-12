@@ -1,0 +1,28 @@
+﻿@model MvcApplication1.Models.ActionDemoModel
+
+<h2>Hinput hagyományos</h2>
+@using (Html.BeginForm("Hinput2", "Helper", new { id = Model.Id }, FormMethod.Post))
+{
+    @:Szöveg: @Html.TextBox("FullName", Model.FullName)<br />
+
+    @:Multiline<br />@Html.TextArea("Address", Model.Address, 2, 20, null)<br />
+    
+    @:Rejtett: @Html.Hidden("FullNameOrig", Model.FullName)
+    <br />
+    <input type="submit" />
+}
+<br />
+<h2>Hinput metadata</h2>
+@using (Html.BeginForm("Hinput", "Helper", new { id = Model.Id }, FormMethod.Post))
+{
+    @:Szöveg: @Html.TextBoxFor(m => m.FullName)<br />
+
+    @:Multiline<br />@Html.TextAreaFor(m => m.Address, 2, 20, null)<br />
+    
+    @:Rejtett: @Html.HiddenFor(m => m.FullName, new { Name = "FullNameOrig", id = "hnev" })
+    <br />
+    @:Jelszó: @Html.PasswordFor(m=>m.Address,new {Name = "Jelszo1"})
+    <br />
+    
+    <input type="submit" />
+}

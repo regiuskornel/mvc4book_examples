@@ -1,0 +1,19 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "HandleException";
+}
+
+<h2>Egyedi, Action függő hibamegjelenítés</h2>
+<br />
+<br />
+
+
+    Action neve: <b>@Model.ActionName</b>
+    <br />
+    Controller neve: <b>@Model.ControllerName</b>
+    <br />
+    Hibaüzenet: <b>@Model.Exception.GetBaseException().Message</b>
+    <br />
+    <br />
+
+Bocsi.

@@ -1,0 +1,49 @@
+﻿@model FirstMVCApp.Models.CardRegister
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CardRegister</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FullName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Company)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Company)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Position)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Position)
+    </div>
+</fieldset>
+
+<div class="phones">
+    @Html.ActionLink("Új telefonszám", "Create", "PhoneNumber", new { cardid = Model.Id }, null) <br/>
+    @Html.Partial("PhoneNumberPartial", Model.PhoneNumbers)
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

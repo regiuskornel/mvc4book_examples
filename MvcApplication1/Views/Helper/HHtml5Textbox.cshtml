@@ -1,0 +1,29 @@
+﻿@using System.Activities.Statements
+@model MvcApplication1.Models.TemplateDemoModel
+@{
+    ViewBag.Title = "HHtml5Textbox";
+}
+
+<h2>Html 5 Textbox háttér szöveggel</h2>
+
+Manuális html:
+<input id="textfield" name="textfield" type="text" placeholder="Felhasználó név" /><br />
+
+Zavaros megoldás: @Html.TextBoxFor(m => m.FullName, new { placeholder = Html.DisplayNameFor(m => m.FullName) })<br />
+
+Új helperrel <br />
+1. verzió: @Html.TextBoxV1For(m => m.FullName)<br />
+             
+
+2. verzió: @Html.TextBoxV2For(m => m.FullName)<br />
+             
+
+3. verzió: @Html.TextBoxV3For(m => m.FullName)
+              @Html.ValidationMessageFor(m => m.FullName)<br />
+
+<hr />
+<p>ViewData.ModelMetadata.AdditionalValues modell szinten:</p>
+@if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("modell metainfo"))
+{
+    @ViewData.ModelMetadata.AdditionalValues["modell metainfo"]
+}

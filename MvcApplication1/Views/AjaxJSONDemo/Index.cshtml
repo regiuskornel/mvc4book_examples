@@ -1,0 +1,119 @@
+﻿@model IEnumerable<MvcApplication1.Models.TemplateDemoModel>
+<link type="text/css" href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<style type="text/css">
+    .selector.ui-icon {border: medium dotted #ddd;}
+    .selector.ui-icon:hover {border: medium dotted red;}
+        .selector.selected {border: medium solid red;}
+
+    #detaillist {margin-top: 10px;}
+    table {width: 100%;}
+    th {border-bottom: 2px solid;}
+    td {border: 1px solid #ddd;}
+        td:first-child {border-left: none;}
+        td:last-child {border-right: none;}
+    .tablecol1 {width: 55px;}
+    .tablecol2, .tablecol3 {width: 350px;}
+</style>
+
+@{
+    var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "Post",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "updatablelist",
+            LoadingElementId = "betoltes",
+            OnComplete = "AttachToSelectorClick",
+            OnFailure = "SetError",
+            OnBegin = "ClearErrors",
+        };
+}
+
+<h2>Ügyfelek listája (@DateTime.Now.ToString("yyyy.MM.dd hh:mm:ss.fff"))</h2>
+
+
+@using (Ajax.BeginForm("IndexListPartial", null, ajaxOptions, new { id = "adfrom" }))
+{
+    <table class="ui-tabs">
+        <colgroup>
+            <col class="tablecol1" />
+            <col class="tablecol2" />
+            <col class="tablecol3" />
+            <col />
+        </colgroup>
+        <tr>
+            <th>#</th>
+            <th>@Html.DisplayNameFor(model => model.FullName)</th>
+            <th>@Html.DisplayNameFor(model => model.Address)</th>
+            <th></th>
+        </tr>
+
+        <tr id="kereso">
+            <th></th>
+            <th><input name="findName" type="text" data-completefield="findName" placeholder="Név szűrés"></th>
+            <th><input name="findAddress" type="text" data-completefield="findAddress" placeholder="Cím szűrés"></th>
+            <th>
+                <input type="submit" value="Keress">
+                <span id="betoltes" style="color: green; display: none;">Keresés...</span>
+                <span id="kereseshiba" style="color: red"></span>
+            </th>
+        </tr>
+    </table>
+}
+<div id="updatablelist">
+    @Html.Partial("IndexListPartial", Model)
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        AttachToSelectorClick();
+
+        $("input[data-completefield]").each(function () {
+            var textbox = $(this);
+
+            textbox.autocomplete({
+                minLength: 2,
+                source: function (request, response) {
+@*Get request:          $.getJSON("@Url.Action("AutoComplete")",
+                        {
+                            term: request.term,
+                            field: textbox.attr("data-completefield")
+                        },
+                        response);*@
+                       $.post("@Url.Action("AutoCompletePost")",
+                        {
+                            term: request.term,
+                            field: textbox.attr("data-completefield")
+                        },
+                        response);
+                },
+            }); //end autocomplete
+            
+        }); //end each
+        
+    }); //end ready
+
+    function AttachToSelectorClick() {
+        $('.selector').on('click', function (event) {
+            $('.selector.selected').removeClass('selected');
+            var selbutton = $(this).addClass('selected');
+            var selid = selbutton.closest("tr").attr('data-itemid');
+            $("#detaillist").load('@Url.Action("DetailListPartial")', { id: selid });
+        });
+    }
+    function ClearErrors() {
+        $('#kereseshiba').html('');
+    }
+
+    function SetError(value) {
+        $('#kereseshiba').html(value.responseText);
+        var row = $('#kereso');
+        for (i = 0; i < 5; i++) {
+            row.fadeTo('fast', 0.5).fadeTo('fast', 1.0);
+        }
+    }
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+}

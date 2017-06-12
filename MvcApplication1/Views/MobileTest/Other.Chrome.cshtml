@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Other";
+}
+
+<h2>Több eszköz - Chrome böngésző</h2>
+
+<ul>
+    @foreach (var dev in DisplayModeProvider.Instance.Modes)
+    {
+        <li>@dev.DisplayModeId</li>
+    }
+</ul>
+@Html.Partial("SwithPartial")

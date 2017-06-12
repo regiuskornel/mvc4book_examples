@@ -1,0 +1,44 @@
+﻿@model MvcApplication1.Models.TemplateDemoModel
+@{ 
+    Layout = null;
+    var ajaxOptions = new AjaxOptions()
+    {
+        HttpMethod = "post",
+        UpdateTargetId = "editinner",
+        Confirm = "Biztos, hogy mented?",
+        OnBegin = "popupValidate",
+        OnSuccess = "successPopup",
+        //OnFailure = "popupFaliture",
+    };
+}
+<div id="editinner">
+    @using (Ajax.BeginForm("Edit", ajaxOptions))
+    {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>TemplateDemoModel</legend>
+
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FullName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FullName)
+                @Html.ValidationMessageFor(model => model.FullName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+            <p>
+                <input type="submit" value="Mentés" />
+            </p>
+        </fieldset>
+    }
+</div>

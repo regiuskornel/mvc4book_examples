@@ -1,0 +1,44 @@
+﻿@model MvcApplication1.Models.RoleModel
+
+@{
+    ViewBag.Title = "RoleDetails";
+}
+
+<h2>RoleDetails</h2>
+
+<fieldset>
+    <legend>RoleModel</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <hr />
+    <h5>Users in Role</h5>
+    <div id="userlist">
+        @Html.Partial("RoleUserList", Model.UserList)
+    </div>
+
+    @using (Ajax.BeginForm("RoleAddUser", new { id = Model.Name },
+        new AjaxOptions
+            {
+                HttpMethod = "post",
+                UpdateTargetId = "userlist",
+                InsertionMode = InsertionMode.Replace,
+            }))
+    {
+        @Html.DropDownListFor(model => model.SelectedUserNameFromList, Model.FullUserList)
+        <input type="submit" value="Add selected user" />
+    }
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "RoleEdit", new { id = Model.Name }) |
+    @Html.ActionLink("Back to List", "RoleList")
+</p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+}

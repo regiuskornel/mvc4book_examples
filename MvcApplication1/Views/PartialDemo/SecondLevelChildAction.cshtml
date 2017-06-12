@@ -1,0 +1,23 @@
+﻿@{
+    var parentViewData = this.ViewContext.ParentActionViewContext.ViewData;
+    var parentParentViewData = this.ViewContext.ParentActionViewContext.ParentActionViewContext.ViewData;
+}
+<div>
+    <em>A második szintü child action belső saját tartalma</em> <b>Tempdata: @TempData["Tempadat"]</b>
+</div>
+<div class="left">
+    <h5>2. Child ViewData</h5>
+    Szemelynev: @ViewData["Szemelynev"] <br />
+    Címe: @ViewData["Címe"]
+</div>
+<div class="left">
+    <h5>1. Child ViewData</h5>
+    Szemelynev: @parentViewData["Szemelynev"]<br />
+    Címe: @parentViewData["Címe"]
+</div>
+<div class="left">
+    <h5>Main ViewData</h5>
+    Szemelynev: @parentParentViewData["Szemelynev"]<br />
+    Címe: @parentParentViewData["Címe"]
+</div>
+<div class="clear-fix"></div>

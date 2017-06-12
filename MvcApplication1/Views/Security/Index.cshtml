@@ -1,0 +1,72 @@
+﻿@using MvcApplication1.Controllers.Securities
+@model MvcApplication1.Controllers.Securities.SecurityModel
+
+<ul>
+    <li>
+        @Html.ActionLink("Csak Https", "HttpsOnly")
+    </li>
+    <li>
+        @Html.ActionLink("Csak Html.Action", "OnlyChildAction")
+    </li>
+    <li>
+        @Html.ActionLink("Csak Chrome böngészővel", "ChromeBrowserOnly")
+    </li>
+</ul>
+<hr />
+<h3>Nincs ellenőrzés, de van AntiForgeryToken</h3>
+@using (Html.BeginForm("AntiForgeryNelkul", "Security"))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value=" Ment " />
+}
+<hr />
+<h3>Van ellenőrzés, de nincs Html.AntiForgeryToken() -> hiba</h3>
+@using (Html.BeginForm("AntiForgeryServed", "Security"))
+{
+    <input type="submit" value=" Ment " />
+}
+<hr />
+<h3>Jól működő AntiForgeryToken</h3>
+@using (Html.BeginForm("AntiForgeryServed", "Security"))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value=" Ment " />
+}
+<hr />
+<h3>Elavult Token</h3>
+@using (Html.BeginForm("AntiForgeryServed", "Security"))
+{
+    <input name="__RequestVerificationToken" type="hidden" value="Z3Ttr2EX7TOnEcwYqpXa7Izuonnh_xjvsc0WMgdFyXN24Lm7bD61U3QEG62BdTE8HUQZQECuw88mS5rqnrzBa__zrr_EKlRcWtv4T3erj_DZCowulj3Afa9WeELRZZ-l1xPdblD1qjaY3PklGmvVoJaPb6OcAfwaen-c_cY6Atk1" />
+    <input type="submit" value=" Ment " />
+}
+<hr />
+<h3>Saját, kódolt hidden html extension</h3>
+@using (Html.BeginForm("EncodedHidden", "Security"))
+{
+    @Html.EncodedHidden("Hid", Model.HId)
+    @Html.EncodedHidden("HGuid", Model.HGuid)
+
+    @Html.TextBox("FullName", Model.FullName)
+    <input type="submit" value=" Ment " />
+}
+<hr />
+<h3>Saját kódolt hidden html extension objektummal</h3>
+@using (Html.BeginForm("EncodedInternalHidden", "Security"))
+{
+    @Html.EncodedHidden("SecurityModelInternal", Model)
+    @Html.EncodedHidden("Sid", 9999)
+
+    @Html.Display("FullName")<br />
+    @Html.Display("HId")<br />
+    <input type="submit" value=" Ment " />
+}
+<hr />
+<h3>Elkódolt Id az URL-ben</h3>
+@Html.EncodedActionLink("Új oldal, ahova az Id elkódolva érkezik", "EncodedUrl", "Security", Model.HId)
+<hr />
+<h3>Elkódolt Id és további query string az URL-ben</h3>
+@Html.EncodedActionLink("Új oldal, ahova az Id és a query string elkódolva érkezik", "EncodedUrlQuery", "Security", new Dictionary<string, object>() { { "id", Model.HId }, { "mokusnev", Model.FullName } })
+<hr />
+
+
+

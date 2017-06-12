@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - View-k egymásban</title>
+    @RenderSection("htmlhead", required: false)
+</head>
+<body style="width: 600px; border: 1px solid #0000ff">
+    <h3>_LayoutDemo.cshtml tartalma</h3>
+    <div style="background-color: #eee; margin: 30px;">
+        <header>
+            @RenderSection("header", required: true)
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            @RenderBody()
+            @RenderPage("~/Views/ViewTest/EgybenPage.cshtml", new { SzovegesTartalom = "Render page demó" })
+        </div>
+        <footer>
+            @RenderSection("footer", required: false)
+        </footer>
+    </div>
+</body>
+</html>

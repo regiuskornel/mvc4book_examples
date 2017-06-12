@@ -1,0 +1,34 @@
+﻿<br />
+Átkapcsolás: 
+@{
+    bool ismobile = ViewContext.HttpContext.GetOverriddenBrowser().IsMobileDevice;
+    @Html.ActionLink(ismobile ? "Desktop nézetre" : "Mobil nézetre", "ChangeBrowserMode", "MobileTest",
+       new { mobile = !ismobile, returnUrl = Request.Url.PathAndQuery },
+       new { target = "_self" })
+
+    HttpBrowserCapabilitiesBase orverRiddenBrowser = ViewContext.HttpContext.GetOverriddenBrowser();
+}
+<hr/>
+
+<table>
+    <tr>
+        <th>Tulajdonság</th>
+        <th>Request alapján</th>
+        <th>HttpContext alapján</th>
+    </tr>
+    <tr>
+        <td>Browser</td>
+        <td>@Request.Browser.Browser</td>
+        <td>@orverRiddenBrowser.Browser</td>
+    </tr>
+    <tr>
+        <td>IsMobileDevice</td>
+        <td>@Request.Browser.IsMobileDevice</td>
+        <td>@orverRiddenBrowser.IsMobileDevice</td>
+    </tr>
+    <tr>
+        <td>Cookies</td>
+        <td>@Request.Browser.Cookies</td>
+        <td>@orverRiddenBrowser.Cookies</td>
+    </tr>
+</table>

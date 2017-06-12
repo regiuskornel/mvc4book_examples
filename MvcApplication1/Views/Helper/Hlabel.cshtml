@@ -1,0 +1,15 @@
+﻿@model MvcApplication1.Models.ActionDemoModel
+@{
+    ViewBag.Title = "Hlabel";
+}
+
+<h2>Label és formázott kimentet</h2>
+Label: @Html.Label("FullName")
+<br />
+LabelFor: @Html.LabelFor(m=>m.FullName)
+<br />
+LabelFor: @Html.LabelFor(m=>m.FullName,"Teljes név")
+<br />
+Value: @Html.Value("FullName","Teljes név: -{0}-")
+<br />
+ValueFor: @Html.ValueFor(m=>m.FullName,"Teljes név: *{0}*")

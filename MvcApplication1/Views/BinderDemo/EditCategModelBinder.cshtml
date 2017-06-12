@@ -1,0 +1,17 @@
+﻿@model MvcApplication1.Models.CategoryModel
+<style>
+    label {display:inline;}
+    fieldset {border: 1px solid; border-radius: 5px; padding: 10px;}
+</style>
+@Html.ValidationSummary(true)
+
+<h3>Edit Saját model binder</h3>
+@using (Html.BeginForm("EditCategModelBinder", "BinderDemo", new { Id = "99999", EzNemValid = "Hát ez honnan jött?" }, FormMethod.Post))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

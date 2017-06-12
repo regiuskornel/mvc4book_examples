@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Validáció részletesen</h2>
+<ul>
+    <li>
+        @Html.ActionLink("ModelState tesztelése", "ModelStateTest")
+    </li>
+    <li>
+        @Html.ActionLink("Validációs megjelenítők", "ShowValid")
+    </li>
+    <li>
+        @Html.ActionLink("IValidatableObject próba", "IValidatableObjectTest")
+    </li>
+    <li>
+        @Html.ActionLink("Relative Date validator attribútummal", "RelativeDateTest")
+    </li>
+    <li>
+        @Html.ActionLink("Relative Date validator attribútummal kliens oldali validációval", "RelativeDateClient")
+    </li>
+    <li>
+        @Html.ActionLink("Remote/kompozit validáció", "RemoteName")
+    </li>
+</ul>

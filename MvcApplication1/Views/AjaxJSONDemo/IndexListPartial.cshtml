@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MvcApplication1.Models.TemplateDemoModel>
+<table>
+    <colgroup>
+        <col class="tablecol1" />
+        <col class="tablecol2" />
+        <col class="tablecol3" />
+        <col class="tablecol4" />
+    </colgroup>
+    @foreach (var item in Model)
+    {
+        <tr data-itemid="@(item.Id)">
+            <td>
+                <div class="selector ui-icon ui-icon-arrow-1-e ui-button"></div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+</table>
+<div id="detaillist">
+    <h3>Válassz a listából!</h3>
+</div>

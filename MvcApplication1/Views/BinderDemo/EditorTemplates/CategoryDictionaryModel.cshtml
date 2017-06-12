@@ -1,0 +1,37 @@
+﻿@using MvcApplication1.Models
+@model CategoryDictionaryModel
+@{ int depth = (int)ViewData["depth"]; }
+
+<tr style="border-bottom: 1px solid #555">
+    <td>
+        @Html.DisplayFor(model => model.Id)
+        @Html.HiddenFor(model => model.Id)
+        @Html.Hidden("key", "Di"+Model.Id)
+    </td>
+    <td class="editor-field">
+        @Html.EditorFor(model => model.FullName)
+    </td>
+    <td class="editor-field">
+        @Html.EditorFor(model => model.CreatedDate)
+    </td>
+</tr>
+<tr>
+    <td colspan="3">
+        @if (Model.SubCategories != null)
+        {
+            <div style="padding: 8px; margin-left: 12px;@CategoryDictionaryModel.GetColorOfDepth(depth)">
+                <table style="width: 100%;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Név</th>
+                        <th>Létrehozva</th>
+                    </tr>
+                    @foreach (var item in Model.SubCategories)
+                    {
+                        @Html.EditorFor(m => item.Value, "CategoryDictionaryModel", "SubCategories[" + item.Key + "]", new { depth = depth + 1 })
+                    }
+                </table>
+            </div>
+        }
+    </td>
+</tr>

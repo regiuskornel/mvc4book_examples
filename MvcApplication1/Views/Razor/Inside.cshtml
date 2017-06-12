@@ -1,0 +1,60 @@
+﻿@{ ViewBag.Title = "Inside"; }
+
+
+@helper ListItemTemplate(int index)
+{
+    <li>Elem sorszáma: <b>@index</b></li>
+}
+
+<h2>Inline Template</h2>
+
+<ul>
+    @for (int i = 1; i < 5; i++)
+    {
+        @ListItemTemplate(i)
+    }
+</ul>
+
+@{
+    Func<dynamic, object> hangsulyos = @<em>@item</em>;
+}
+@hangsulyos("Hangsúlyos szöveg")
+
+<br />
+@{
+    var ic = new InsideClass("Kód a View-ban");
+}
+A demó eredménye: "@ic.MessageTxt"<br />
+Szám éréke: @numberTen<br />
+Tanács: @txt<br />
+<div class="@GetCssClass()"></div>
+
+@functions
+{
+    int numberTen = 10;
+    string txt = "Kerüld el ha teheted!";
+
+    private class InsideClass
+    {
+        public InsideClass(string s)
+        {
+            this.MessageTxt = s;
+        }
+        public string MessageTxt { get; private set; }
+    }
+
+    private HtmlString GetCssClass()
+    {
+        return new HtmlString("cssoszalynev");
+    }
+}
+
+@GetType().Assembly.Location
+@{
+    DefineSection("scripts", () =>
+    {
+        WriteLiteral("\r\n<script type=\"text/javascript\">\r\n function showAlert(){" +
+                   "alert(\'Ez a scripts section\');}\r\n" +
+                   "</script>\r\n");
+    });
+}

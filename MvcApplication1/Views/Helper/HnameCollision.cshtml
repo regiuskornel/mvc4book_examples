@@ -1,0 +1,37 @@
+﻿@using MvcApplication1.Models
+@model WrongModel
+@{
+    ViewBag.Title = "HnameCollision";
+}
+
+<h2>Névütközések</h2>
+@using (Html.BeginForm("HnameCollision", "Helper", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.TextBoxFor(m => m.Name)<br />
+    @Html.TextBoxFor(m => m.NAME)<br />
+    @Html.TextBoxFor(m => m.name)<br />
+    @Html.CheckBoxFor(m => m.Checked)<br />
+    @Html.CheckBoxFor(m => m.Disabled)<br />
+
+    @Html.TextBoxFor(m => m.Form)<br />
+    @Html.TextBoxFor(m => m.Value)<br />
+    
+    <input type="submit" value="Ment" />
+}
+
+
+<form action="/Helper/HnameCollision" method="post">
+    <input id="Id" name="Id" type="hidden" value="1" />
+    <input id="Name" name="Name" type="text" value="Tanuló 1" /><br />
+    <input id="NAME" name="NAME" type="text" value="Tanuló 2" /><br />
+    <input id="name" name="name" type="text" value="Tanuló 3" /><br />
+    <input checked="checked" id="Checked" name="Checked" type="checkbox" value="true" />
+       <input name="Checked" type="hidden" value="false" /><br />
+    <input checked="checked" id="Disabled" name="Disabled" type="checkbox" value="true" />
+       <input name="Disabled" type="hidden" value="false" /><br />
+    <input id="Form" name="Form" type="text" value="HnameCollision" /><br />
+    <input id="Value" name="Value" type="text" value="text" /><br />
+
+    <input type="submit" value="Ment" />
+</form>

@@ -1,0 +1,40 @@
+﻿@using MvcApplication1.Models
+@model CategoryModel
+@{ int index = 0; int depth = (int)ViewData["depth"];}
+
+<tr style="border-bottom: 1px solid #555">
+    <td>
+        @Html.DisplayFor(model => model.Id)
+    </td>
+    <td>
+        @Html.ActionLink(Model.FullName, "EditTree", new { id = Model.Id })
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.CreatedDate)
+    </td>
+</tr>
+<tr>
+    <td colspan="3">
+        @if (Model.SubCategories != null)
+        {
+            <div style="padding: 8px; margin-left: 12px;@CategoryModel.GetColorOfDepth(depth)">
+                <table style="width: 100%;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Név</th>
+                        <th>Létrehozva</th>
+                    </tr>
+@*                    @foreach (var item in Model.SubCategories)
+                    {
+                        @Html.DisplayFor(m => item, "CategoryModel", "SubCategories[" + index++ + "]", new { depth = depth + 1 })
+                    }*@
+                    @for (index = 0; index < Model.SubCategories.Count; index++)
+                    {
+                        @Html.DisplayFor(m => m.SubCategories[index], new { depth = depth + 1 })
+                    }
+
+                </table>
+            </div>
+        }
+    </td>
+</tr>

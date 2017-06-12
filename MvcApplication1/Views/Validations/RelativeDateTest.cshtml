@@ -1,0 +1,16 @@
+﻿@model MvcApplication1.Models.ValidationMaxRelativeModel
+
+<h2>Relatív dátum validációs attribútum próba</h2>
+@Html.ValidationSummary(true)
+<br />
+@using (Html.BeginForm("RelativeDateTest", "Validations", new { id = Model.Id }, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.FullName) @Html.TextBoxFor(m => m.FullName) 
+    <br />@Html.ValidationMessageFor(m=>m.FullName)
+    <br />
+    @Html.LabelFor(m => m.TravelDate) @Html.TextBoxFor(m => m.TravelDate)
+    <br />
+    @Html.ValidationMessageFor(m=>m.TravelDate)
+    <br />
+    <input type="submit" />
+}

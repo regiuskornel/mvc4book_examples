@@ -1,0 +1,13 @@
+﻿@model decimal
+@{ var htmlid=Html.Id(""); }
+
+<input type="range" id="@htmlid" name="@Html.Name("")" value="@((int)Model)" max="400" min="1" size="5" style="vertical-align: middle;" />
+<input type="text" value="@(Model)" id ="inner_@htmlid" disabled="disabled" style="width: 40px;"> EUR
+
+<script type="text/javascript">
+    $(function () {
+        $('#@htmlid').bind('mouseup', function () {
+            $('#inner_@htmlid').val($(this).val());
+        });
+    });
+</script>

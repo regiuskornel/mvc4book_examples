@@ -1,0 +1,44 @@
+﻿@using MvcApplication1.Models
+@model CategoryModel
+@{ int index = 0; int depth = (int)ViewData["depth"];}
+
+<tr style="border-bottom: 1px solid #555">
+    <td>
+        @Html.DisplayFor(model => model.Id)
+        @Html.HiddenFor(model => model.Id)
+    </td>
+    <td class="editor-field">
+        @Html.EditorFor(model => model.FullName)
+    </td>
+    <td class="editor-field">
+        @Html.EditorFor(model => model.CreatedDate)
+    </td>
+    @*    <td>
+        @Html.EditorFor(model=>model.JoinedCategory)
+    </td>*@
+</tr>
+<tr>
+    <td colspan="3">
+        @if (Model != null && Model.SubCategories != null)
+        {
+            <div style="padding: 8px; margin-left: 12px;@CategoryModel.GetColorOfDepth(depth)">
+                <table style="width: 100%;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Név</th>
+                        <th>Létrehozva</th>
+                    </tr>
+                    @foreach (var item in Model.SubCategories)
+                    {
+                        @Html.EditorFor(m => item, "CategoryModel", "SubCategories[" + index++ + "]", new { depth = depth + 1 })
+                    }
+@*                    @for (index = 0; index < Model.SubCategories.Count; index++)
+                    {
+                        @Html.EditorFor(m => m.SubCategories[index], new { depth = depth + 1 })
+                    }*@
+
+                </table>
+            </div>
+        }
+    </td>
+</tr>

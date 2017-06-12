@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MvcApplication1.Controllers.Files.FileModel>
+
+@{
+    //Saját List.tt scaffold template
+}
+
+<h2>Kérlek add meg a fájlok leírását</h2>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MIME)
+            </th>
+        </tr>
+
+        @Html.EditorForModel()
+    </table>
+    
+        <p>
+        <input type="submit" value="Mentés" />
+    </p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

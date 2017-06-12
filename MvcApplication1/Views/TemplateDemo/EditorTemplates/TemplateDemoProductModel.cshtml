@@ -1,0 +1,14 @@
+﻿@model MvcApplication1.Models.TemplateDemoProductModel
+<tr>
+    <td>
+        @Html.HiddenFor(model => model.Id)
+        @Html.EditorFor(model => model.ItemNo)
+    </td>
+
+    <td>
+        @Html.EditorFor(model => model.ProductName)
+    </td>
+    <td>
+        @Html.EditorFor(model => model.Quantity)
+    </td>
+</tr>

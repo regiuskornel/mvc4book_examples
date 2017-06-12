@@ -1,0 +1,29 @@
+﻿@model FirstMVCApp.Models.FirstModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>FirstModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

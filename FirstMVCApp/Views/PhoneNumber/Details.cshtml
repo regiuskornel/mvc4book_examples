@@ -1,0 +1,29 @@
+﻿@model FirstMVCApp.Models.PhoneNumber
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PhoneNumber</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Number)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Number)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CardRegister.FullName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CardRegister.FullName)
+    </div>
+</fieldset>
+<p>
+@Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+@Html.ActionLink("Vissza a névjegykártyához", "Details","CardRegister",new {id = Model.CardRegisterId}, null)
+</p>

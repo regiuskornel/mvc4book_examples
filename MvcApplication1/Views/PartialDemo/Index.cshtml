@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Demo Index";
+}
+
+<style type="text/css">
+    .left { float: left;width: 30%;}
+</style>
+<h2>Partial Demo kontroller Index</h2>
+<div>
+    <div class="left">
+        <h4 style="">Main ViewData</h4>
+        Szemelynev: @ViewData["Szemelynev"]<br />
+        Címe: @ViewData["Címe"]
+    </div>
+    <div class="left">
+        <h4>Main ViewBag</h4>
+        Telefonszama: @ViewBag.Telefonszama<br />
+        EmailCime: @ViewBag.EmailCime
+    </div>
+    <div class="left">
+        <h4>Main ViewBag -> ViewData</h4>
+        Szemelynev: @ViewBag.Szemelynev<br />
+        Címe: @ViewBag.Címe
+    </div>
+    <div class="clear-fix"></div>
+     <b>Tempdata: @TempData["Tempadat"]</b> @Html.ActionLink("Tempdata demó", "IndexRedir")
+</div>
+<hr />
+<div style="background-color: #ddd; margin-left: 20px;">
+    <h3>*** PartialView eleje ***</h3>
+    @Html.Partial("DemoPartial")
+    <h3>*** PartialView vége ***</h3>
+</div>
+<div class="clear-fix"></div>
+<hr />
+<div style="background-color: #ddd; margin-left: 20px;">
+    <h3>*** Child Action eleje ***</h3>
+    @Html.Action("ChildAction")
+@*    <br />
+    @{Html.RenderAction("ChildAction");}*@
+    <h3>*** Child Action vége ***</h3>
+</div>

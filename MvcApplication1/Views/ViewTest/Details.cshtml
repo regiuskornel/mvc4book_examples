@@ -1,0 +1,55 @@
+﻿@model MvcApplication1.Models.ActionDemoModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ActionDemoModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TotalSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastPurchaseDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastPurchaseDate)
+    </div>
+<div style="border:1px solid;padding: 5px">
+    <h4>@Html.DisplayNameFor(model => model.PurchasesList)</h4>
+    @Html.Partial("DetailList",Model.PurchasesList)
+@*    @{ Html.RenderPartial("DetailList", Model.PurchasesList); }*@
+</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

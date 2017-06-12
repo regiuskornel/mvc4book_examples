@@ -1,0 +1,17 @@
+﻿<h2>ActionLinkek</h2>
+
+@Html.ActionLink("A 2. oldalra", "Hlink2")
+<br />
+@Html.ActionLink("A 2. oldalra, URL paraméterrel", "Hlink2", "Helper", new { honnan = "Hlink" }, null)
+<br />
+@Html.ActionLink("A 2. oldalra, URL paraméterrel RouteValue Dictionary", "Hlink2", "Helper", new RouteValueDictionary {{"honnan","Hlink"}, {"szám", 10}}, null)
+<br />
+@Html.ActionLink("Szöveg","Hlink2",routeValues: new { honnan = "Hlink" })
+<br />
+@Html.ActionLink("A 2. oldalra, de új ablakban", "Hlink2", null, new { id = "indexlink", @class = "linkek", @target = "_blank" })
+<br />
+<h2>RouteLink</h2>
+@Html.RouteLink("A 2. oldalra, URL paraméterrel", "Default", new { action = "Hlink2", controller = "Helper", honnan = "Hlink" }, null)
+<br />
+@Html.RouteLink("A panaszos oldalra", "complains", new { action = "New", controller = "Incoming"}, null)
+<br />

@@ -1,0 +1,59 @@
+﻿@using MvcApplication1.Infrastructure
+@model MvcApplication1.Models.CategoryModel
+<style>
+    label {display:inline;}
+    fieldset {border: 1px solid; border-radius: 5px; padding: 10px;}
+</style>
+@Html.ValidationSummary(true)
+
+<h3>Edit Request</h3>
+@using (Html.BeginForm("Edit"))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+<h3>Edit1 formcollection</h3>
+@using (Html.BeginForm("Edit1","BinderDemo"))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+<h3>Edit2 metódus paraméterek</h3>
+@using (Html.BeginForm("Edit2", "BinderDemo"))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+<h3>Edit3 model paraméter</h3>
+@using (Html.BeginForm("Edit3", "BinderDemo"))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+<h3>Edit4 manuális model update</h3>
+@using (Html.BeginForm("Edit4", "BinderDemo"))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+<h3>Edit5 manuális model update TryUpdate</h3>
+@using (Html.BeginForm("Edit5", "BinderDemo"))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+<h3>Edit6 manuális model update szűréssel</h3>
+@using (Html.BeginForm("Edit6", "BinderDemo"))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+<h3>Edit7 Bind attributum model update</h3>
+@using (Html.BeginForm("Edit7", "BinderDemo"))
+{
+    @Html.Partial("EditPartial", Model)
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

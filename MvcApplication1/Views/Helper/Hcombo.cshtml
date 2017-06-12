@@ -1,0 +1,26 @@
+﻿@using MvcApplication1.Models
+@model ActionDemoModel
+@{
+    ViewBag.Title = "Hcombo";
+}
+
+<h2>Legördülő lista</h2>
+@using (Html.BeginForm("Hcombo", null, new { id = Model.Id }, FormMethod.Post, new { id = "form1" }))
+{
+    @Html.LabelFor(m => m.KeyPurchase)
+    @Html.DropDownListFor(m => m.KeyPurchase.Id, 
+        new SelectList(Model.PurchasesList.ToList(), "Id", "ProductName", Model.KeyPurchase.Id))
+}
+<br />
+<input type="submit" value="Ment" form="form1"/>
+
+<h2>Normál lista</h2>
+
+@using (Html.BeginForm("Hlist", null, new { id = Model.Id }, FormMethod.Post, new { id = "form2" }))
+{
+    @Html.LabelFor(m => m.KeyPurchase)
+    @Html.ListBoxFor(m => m.KeyPurchaseIds,
+        new SelectList(Model.PurchasesList.ToList(), "Id", "ProductName", Model.KeyPurchaseIds))
+    <br />
+    <input type="submit" value="Ment" form="form2"/>
+}

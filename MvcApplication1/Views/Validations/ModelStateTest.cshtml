@@ -1,0 +1,20 @@
+﻿@model MvcApplication1.Models.ValidationMaxModel
+
+<h2>Validációk részletesen</h2>
+@Html.ValidationSummary()
+<br />
+@using (Html.BeginForm("ModelStateTest", "Validations", new { id = Model.Id }, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.FullName) @Html.TextBoxFor(m => m.FullName) 
+    <br />@Html.ValidationMessageFor(m=>m.FullName)
+    <br />
+    @Html.LabelFor(m => m.Address)
+    @Html.TextAreaFor(m => m.Address, 4, 20, null)<br />
+    @Html.ValidationMessageFor(m=>m.Address)
+    <br />@*
+    @Html.LabelFor(m => m.Email)<br />
+    @Html.TextBoxFor(m => m.Email)<br />
+    @Html.ValidationMessageFor(m=>m.Email)
+    *@<br />
+    <input type="submit" />
+}

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Output cache próbák</h2>
+<ul>
+    <li>
+        @Html.ActionLink("OutputCache tesztelése 20 másodperc cache", "CacheTest", new { id = 1 })
+    </li>
+
+    <li>
+        @Html.ActionLink("Child action OutputCache tesztelése VaryByParam (Id)", "CacheTestParent")
+    </li>
+
+    <li>
+        @Html.ActionLink("OutputCache tesztelése VaryByHeader (User-Agent)", "CacheTestHeader")
+    </li>
+
+    <li>
+        @Html.ActionLink("OutputCache tesztelése VaryByCustom (Böngésző verzió)", "CacheTestCustom")
+    </li>
+
+    <li>
+        @Html.ActionLink("OutputCache tesztelése Localtion (none)", "CacheTestLocation")
+    </li>
+
+    <li>
+        @Html.ActionLink("OutputCache tesztelése Profile (OtPercVaryById)", "CacheTestProfile")
+    </li>
+
+     <li>
+        @Html.ActionLink("OutputCache partial cache slow-parent, fast-child", "CacheTestParentSlow")
+    </li>
+
+    
+</ul>

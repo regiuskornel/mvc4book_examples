@@ -1,0 +1,20 @@
+﻿@model object
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<br />
+Modell: @Model
+<br />
+Kategória: @ViewData["kategoria"]
+<br />
+Formátum:  @ViewData["formátum"]
+
+<br />
+<div>
+    <b>Action:</b> @Html.Action("DetailPartial")
+</div>
+<div>
+    <b>PartialView:</b> @Html.Partial("DetailPartial")
+</div>

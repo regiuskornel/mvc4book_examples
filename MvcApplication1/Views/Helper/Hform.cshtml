@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Hform";
+}
+
+<h2>Hform</h2>
+
+@using (Html.BeginForm("Hform", "Helper", new { id = 1 }, FormMethod.Post, new { id = "form1" }))
+{
+    @:Szöveg: @this.Html.TextBox("Szoveges")<br />
+    <input type="submit" />
+}

@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Url helper példák</h2>
+
+<p>
+    Az Url: @Url.Action("AnotherAction")
+</p>
+<p>
+    Manuális link: <a href="@Url.Action("AnotherAction")">Ez a belső action linkje 
+        <img src="~/Images/orderedList0.png">
+    </a>
+</p>
+<p>
+    Javascript eseménykezelő:
+    <img src="~/Images/orderedList1.png" id="id1" style="cursor: pointer">
+    <script type="text/javascript">
+        $(function () {
+            $('#id1').on('click', function () {
+                window.location = '@Url.Action("AnotherAction")';
+            });
+        });
+    </script>
+</p>
+
+<p>
+    A Url paraméterekkel: @Url.Action("AnotherAction","UrlHelper",new {oid=1, category="cats", startindex=50})
+</p>
+<p>
+    A teljes Url: @Url.Action("AnotherAction","UrlHelper",null,"http","localhost")
+</p>
+
+<p>
+    A RouteUrl 1: @Url.RouteUrl("complains", new {action= "New",controller="Incoming"}) <br />
+    A RouteUrl 2: @Url.RouteUrl("complains", new {action= "New",controller="Incoming"}, Request.Url.Scheme)
+</p>
+<p>
+    A HttpRouteUrl: @Url.HttpRouteUrl("complains", new {action= "New",controller="Incoming"})
+</p>
+<p>
+    Enkódolt: category=@Url.Encode("arm chair")&codes=@Url.Encode("<9999>")
+</p>
+<p>
+    Link direkt: <img src="/Images/orderedList2.png" /><br />
+    Content: <img src="@Url.Content("~/Images/orderedList2.png")" /> <br />
+    Link virtual: <img src="~/Images/orderedList2.png" /><br />
+</p>
+
+<p>
+    A IsLocalUrl 1: @Url.IsLocalUrl("/complains/UrlHelper/AnotherAction?oid=1&category=cats") <br />
+    A IsLocalUrl 2: @Url.IsLocalUrl("http://localhost:18005/urlhelper/AnotherAction") <br />
+    A IsLocalUrl 3: @Url.IsLocalUrl("/http://index.hu")
+</p>
+
+
+Link direkt: <img src="/Images/orderedList2.png" /><br />
+Content: <img src="/virtualis/Images/orderedList2.png" /> <br />
+Link virtual: <img src="/virtualis/Images/orderedList2.png" /><br />

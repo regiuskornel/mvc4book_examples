@@ -1,0 +1,47 @@
+﻿@model MvcApplication1.Models.CacheDemoModel
+@{
+    ViewBag.Title = "CacheTest VaryBy Id";
+}
+
+<h2>Cache próba VaryBy Id </h2>
+
+<div>
+    Pontos idő : @DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss.fff")
+</div>
+<div id="cleareddiv" style="background-color: red"></div>
+
+<table style="border: 1px dotted; width: 80%">
+    <tr>
+        <th>
+            @Html.LabelFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.LabelFor(model => model.CreateTime)
+        </th>
+        <th>
+            @Html.LabelFor(model => model.SelectTime)
+        </th>
+    </tr>
+    <tr>
+        @Html.Action("CacheTestChild1", new { id = 1 })
+    </tr>
+    <tr>
+        @Html.Action("CacheTestChild1", new { id = 2 })
+    </tr>
+    <tr>
+        @Html.Action("CacheTestChild1", new { id = 3 })
+    </tr>
+</table>
+<br />
+@Ajax.ActionLink("Cache törlése", "ClearCache", 
+new AjaxOptions() {
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "cleareddiv"
+})
+<br />
+<br />
+@Html.ActionLink("Back to the test List", "Index")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

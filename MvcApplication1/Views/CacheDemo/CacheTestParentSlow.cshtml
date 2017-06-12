@@ -1,0 +1,29 @@
+﻿@model MvcApplication1.Models.CacheDemoModel
+@{
+    ViewBag.Title = "CacheTest VaryBy Id";
+}
+
+<h2>Cache próba nagy cache periódusú parent és kis cache periódusú child</h2>
+
+<div>
+    Pontos idő : @DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss.fff")
+</div>
+<div id="cleareddiv" style="background-color: red"></div>
+
+@Html.Action("CacheTestChildFast")
+<br />
+@Ajax.ActionLink("Cache törlése", "ClearCache",
+new AjaxOptions()
+{
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "cleareddiv"
+})
+<br />
+<br />
+@Html.ActionLink("Back to the test List", "Index")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryfull")
+}
+
+

@@ -1,0 +1,62 @@
+﻿@using System.Web.Http
+
+@{
+    ViewBag.Title = "Control flow";
+}
+
+@if (true || false)
+{
+    <p>If ág</p>
+} 
+else
+{
+    <p>Else ág</p>
+}
+<br />
+@while (true && false)
+{
+    <p>While kód</p>
+}
+<br />
+@do
+{
+    <p>Do...While kód</p>
+} while (true && false);
+<br />
+@switch("alma")
+{
+    case "körte":
+        <p>Körte nem</p>
+        break;
+    case "alma":
+        <p>Alma lesz</p>
+        break;
+    default:
+        <p>Ismeretlen gyümölcs</p>
+        break;
+}
+<br />
+@foreach(var a in new [] {1,2,3})
+{
+    <b>foreach item</b>@a @:,
+}
+<br />
+@for(int i=1;i<4;i++)
+{
+    <b>for item</b>@i @:,
+}
+<br />
+@using (var res = new HttpConfiguration())
+{
+    foreach (var re in res.Routes)
+    {
+        @re.ToString() @:,
+    }
+}
+<br />
+@lock(this)
+{
+    <b>Egyszerre csak egy jöjjön</b>
+}
+<br />
+

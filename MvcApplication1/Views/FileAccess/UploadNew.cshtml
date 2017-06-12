@@ -1,0 +1,24 @@
+﻿@model MvcApplication1.Controllers.Files.FileModel
+
+@{
+    ViewBag.Title = "UploadNew";
+}
+
+<h2>Új fájlok feltöltése</h2>
+
+@using (Html.BeginForm("UploadNew", "FileAccess", FormMethod.Post, new { id = "uploadForm", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.FileUploadFor(model => model.Files)<br/>
+    @Html.ValidationMessageFor(model => model.Files)
+    <p>
+        <input type="submit" value="Feltöltés" />
+    </p>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,43 @@
+﻿@model FirstMVCApp.Models.PhoneNumber
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>PhoneNumber</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Number)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Number)
+            @Html.ValidationMessageFor(model => model.Number)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CardRegisterId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CardRegisterId", String.Empty)
+            @Html.ValidationMessageFor(model => model.CardRegisterId)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Vissza a névjegykártyához", "Details","CardRegister",new {id = Model.CardRegisterId}, null)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

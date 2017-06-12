@@ -1,0 +1,50 @@
+﻿@model MvcApplication1.Models.ActionDemoModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<fieldset>
+    <legend>FapadosActionDemoModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+@*        @Html.Raw(Model.Address) *@
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TotalSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastPurchaseDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastPurchaseDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

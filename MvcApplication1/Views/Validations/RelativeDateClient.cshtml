@@ -1,0 +1,85 @@
+﻿@using MvcApplication1.Controllers.Validator
+@model MvcApplication1.Models.ValidationMaxRelativeModel
+@{
+    Html.EnableClientValidation(true);
+    Html.EnableUnobtrusiveJavaScript(true);
+}
+
+<h2>Relatív dátum validációs attribútum próba</h2>
+@Html.ValidationSummary(true)
+<br />
+@using (Html.BeginForm("RelativeDateClient", "Validations", new { id = Model.Id }, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.FullName) @Html.TextBoxFor(m => m.FullName) 
+    <br />@Html.ValidationMessageFor(m => m.FullName)
+    <br />
+    @Html.LabelFor(m => m.Email) @Html.TextBoxFor(m => m.Email) 
+    <br />@Html.ValidationMessageFor(m => m.Email)
+    <br />
+    @Html.LabelFor(m => m.TravelDate) @Html.TextBoxFor(m => m.TravelDate)
+    <br />
+    @Html.ValidationMessageFor(m => m.TravelDate)
+    <br />
+    <input type="submit" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        jQuery.validator.setDefaults({ onkeyup: false });
+        
+        //Adapter:
+        $.validator.unobtrusive.adapters.addSingleVal("daterelative", "reldate");
+
+        //Validátor:
+        $.validator.addMethod("daterelative", function (value, element, relativeDate) {
+            var currentDate = new Date();
+            var inputDate = new Date(value);
+            switch (relativeDate) {
+            case "@RelativeDateValidatorAttribute.RelativeDate.ElozoHonap.ToString().ToLowerInvariant()":
+                var prevMonth = GetRelativeMonthOnly(currentDate, -1);
+                var inputDatep = GetRelativeMonthOnly(inputDate, 0);
+                if (+inputDatep != +prevMonth)
+                    return false;
+                break;
+            case "@RelativeDateValidatorAttribute.RelativeDate.Ma.ToString().ToLowerInvariant()":
+                var actualDay = currentDate.setHours(0, 0, 0, 0);
+                var inputDatec = inputDate.setHours(0, 0, 0, 0);
+                if (+inputDatec != +actualDay)
+                    return false;
+                break;
+            case "@RelativeDateValidatorAttribute.RelativeDate.KovetkezoHonap.ToString().ToLowerInvariant()":
+                var nextMonth = GetRelativeMonthOnly(currentDate, +1);
+                var inputDaten = GetRelativeMonthOnly(inputDate, 0);
+                if (+inputDaten != +nextMonth)
+                    return false;
+                break;
+            }
+            return true;
+        });
+
+        function GetRelativeMonthOnly(dateObject, offsetOfMonth) {
+            return new Date(dateObject.getFullYear(), dateObject.getMonth() + offsetOfMonth, 1);
+        }
+    </script>
+}
+
+
+<!--
+    <input 
+        data-val="true" 
+        data-val-daterelative="The field Utazási nap is invalid." 
+        data-val-daterelative-reldate="ElozoHonap" 
+        id="TravelDate" name="TravelDate" type="text" 
+        value="2013.06.06. 0:00:00" class="valid" 
+        />
+    
+    <input 
+    data-val="true" 
+    data-val-required="A név megadása kötelező (1)!" 
+    id="FullName" name="FullName" type="text" 
+    value="Tanuló 1" class="valid" 
+/>
+    -->
+
